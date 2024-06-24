@@ -1,6 +1,14 @@
 import { toast } from "react-toastify";
-import { createSlice } from "@reduxjs/toolkit";
-const initialState = {
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { Product } from "@/components/mainComponents/productWidgets/Types";
+
+interface CartState {
+  items: Product[];
+  products: Product[];
+  productList: Product[];
+}
+
+const initialState: CartState = {
   items: [],
   products: [],
   productList: [],
@@ -10,36 +18,30 @@ const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    setProducts(state, action) {
+    setProducts(state, action: PayloadAction<Product[]>) {
       state.products = action.payload;
-      // console.log("product", state.products);
     },
-    setFilteredProducts(state, action) {
+    setFilteredProducts(state, action: PayloadAction<Product[]>) {
       state.productList = action.payload;
     },
-    addToCart(state, action) {
+    addToCart(state, action: PayloadAction<Product>) {
       const item = action.payload;
-      const existingItem = state.items.find((data) => {
-        return data.id === item.id;
-      });
-      // console.log("item", item);
+      const existingItem = state.items.find(
+        (data: Product) => data.id === item.id
+      );
       if (existingItem) {
         toast.error("Already exist in cart!", {
           theme: "dark",
         });
       } else {
         const defaultQuantity = 1;
-        state.items.push({
-          ...item,
-          quantity: defaultQuantity,
-        });
+        state.items.push({ ...item, quantity: defaultQuantity });
       }
     },
-    removefromCart(state, action) {
-      console.log(action.payload);
+    removefromCart(state, action: PayloadAction<number>) {
       state.items.splice(action.payload, 1);
     },
-    increCartItems(state, action) {
+    increCartItems(state, action: PayloadAction<number>) {
       const index = action.payload;
       const updatedItems = state.items.map((data, i) => {
         if (i === index) {
@@ -53,7 +55,7 @@ const cartSlice = createSlice({
       });
       state.items = updatedItems;
     },
-    decreCartItems(state, action) {
+    decreCartItems(state, action: PayloadAction<number>) {
       const index = action.payload;
       const item = state.items[index];
 
@@ -63,7 +65,7 @@ const cartSlice = createSlice({
             return {
               ...data,
               quantity: data.quantity - 1,
-              totalPrice: data.price * (data.quantity + 1),
+              totalPrice: data.price * (data.quantity - 1),
             };
           }
           return data;
@@ -73,6 +75,7 @@ const cartSlice = createSlice({
     },
   },
 });
+
 export const {
   addToCart,
   removefromCart,
@@ -81,4 +84,5 @@ export const {
   setProducts,
   setFilteredProducts,
 } = cartSlice.actions;
+
 export default cartSlice.reducer;
