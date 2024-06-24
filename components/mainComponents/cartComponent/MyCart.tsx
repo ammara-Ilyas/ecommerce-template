@@ -34,16 +34,16 @@ function Cart() {
     dispatch(decreCartItems(index));
   };
   return (
-    <div className="w-[95%] md:w-3/4 mx-auto mt-8 bg-base-100 shadow-xl  p-24 transition flex overflow-hidden ">
+    <div className="mb-16 scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar scrollbar-thumb-slate-500  scrollbar-track-white w-[95%] md:w-3/4 mx-auto mt-8 bg-base-100 shadow-xl  p-24 transition flex overflow-hidden ">
       {cartItems.length === 0 ? (
-        <div className="text-gray-600 min-h-24 flex text-center text-2xl pt-11 font-bold justify-center items-center">
+        <div className="text-gray-600 min-h-20 flex text-center text-2xl pt-11 font-bold justify-center items-center">
           <h2>Your cart is empty.</h2>
         </div>
       ) : (
         <div className="w-full">
           <h1 className="text-3xl font-bold mb-4 text-center">Your Cart</h1>
 
-          <div className="border-2 h-80 overflow-y-scroll scroll-m-28">
+          <div className="scrollbar-thin h-[350px] overflow-y-scroll">
             {cartItems.map((product, index) => (
               <div
                 key={index}
