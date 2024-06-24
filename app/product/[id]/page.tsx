@@ -11,11 +11,11 @@ import React, { useState, useEffect } from "react";
 //////////// import type
 import { Product } from "@/components/mainComponents/productWidgets/Types";
 interface productType {
-  params: Product[];
+  params: Product;
 }
 const page: React.FC<productType> = ({ params }) => {
   const dispatch = useDispatch();
-  const [productItem, setProductItem] = useState();
+  const [productItem, setProductItem] = useState<Product>();
   console.log(params);
 
   useEffect(() => {
@@ -23,9 +23,7 @@ const page: React.FC<productType> = ({ params }) => {
       try {
         const res = await fetch("https://fakestoreapi.com/products");
         const data = await res.json();
-        const productItem = data.find(
-          (item: Product) => item.id === parseInt(params.id)
-        );
+        const productItem = data.find((item: Product) => item.id === params.id);
         setProductItem(productItem);
       } catch (error) {
         console.error(error);

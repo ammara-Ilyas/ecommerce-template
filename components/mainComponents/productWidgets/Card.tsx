@@ -4,7 +4,7 @@ import { FaHeart, FaRetweet, FaShoppingCart } from "react-icons/fa";
 import IconLinks from "./Icons";
 /////////import redux
 import { useDispatch } from "react-redux";
-import { addToCart } from "@/redux/slice/CartSlice";
+import { addToCart } from "@/redux/slice/cartSlice";
 ////////import type
 // import Product from "../productComponent/MyProduct";
 import { Product } from "./Types";

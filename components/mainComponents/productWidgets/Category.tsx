@@ -1,6 +1,6 @@
 "use client";
 import { useSelector, useDispatch } from "react-redux";
-import { setProducts } from "@/redux/slice/CartSlice";
+import { setProducts } from "@/redux/slice/cartSlice";
 ///////////import type product
 import { Product } from "./Types";
 const CategoryButton = () => {

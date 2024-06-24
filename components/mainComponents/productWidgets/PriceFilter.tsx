@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { FaArrowRightArrowLeft } from "react-icons/fa6";
 import { useSelector, useDispatch } from "react-redux";
-import { setProducts } from "@/redux/slice/CartSlice";
+import { setProducts } from "@/redux/slice/cartSlice";
 //////////import type
 import { Product } from "./Types";
 

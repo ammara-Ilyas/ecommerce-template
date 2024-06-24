@@ -3,14 +3,14 @@ import React, { useEffect, useState } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useDispatch, useSelector } from "react-redux";
-import { setProducts, setFilteredProducts } from "@/redux/slice/CartSlice";
+import { setProducts, setFilteredProducts } from "@/redux/slice/cartSlice";
 import ProductCard from "../productWidgets/Card";
 import ProductCardDetail from "../productWidgets/ProductCardDetail";
 import { Product } from "../productWidgets/Types";
 function MyProduct() {
   const dispatch = useDispatch();
-  const productList: Product[] = useSelector(
-    (state: { cart: { productList: Product[] } }) => state.cart.productList
+  const products: Product[] = useSelector(
+    (state: { cart: { products: Product[] } }) => state.cart.products
   );
 
   useEffect(() => {
@@ -37,10 +37,10 @@ function MyProduct() {
 
   return (
     <div className="flex flex-wrap items-center justify-center gap-4 w-full border-red-200 mt-28 mx-auto">
-      {productList.length === 0 ? (
+      {products.length === 0 ? (
         <div className="text-center text-2xl">Loading...</div>
       ) : (
-        productList.map((item: Product) => (
+        products.map((item: Product) => (
           <div
             key={item.id}
             className="w-[30%] hover:shadow-lg p-4 rounded-md"
