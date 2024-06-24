@@ -1,38 +1,40 @@
 "use client";
-import { addToCart } from "@/redux/slice/CartSlice";
+import { addToCart } from "@/redux/slice/cartSlice";
 import { useDispatch } from "react-redux";
-import SingleProductSlider from "@/components/slider/SingleProdcutSlider";
 ////////toastify
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
+import { useParams } from "next/navigation";
+
 //////////// import type
 import { Product } from "@/components/mainComponents/productWidgets/Types";
-interface productType {
-  params: Product;
-}
-const page: React.FC<productType> = ({ params }) => {
+import SingleProductSlider from "@/components/slider/SingleProdcutSlider";
+const page: React.FC = () => {
   const dispatch = useDispatch();
-  const [productItem, setProductItem] = useState<Product>();
-  console.log(params);
+  const { id } = useParams();
+
+  const [productItem, setProductItem] = useState<Product | null>(null);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await fetch("https://fakestoreapi.com/products");
-        const data = await res.json();
-        const productItem = data.find((item: Product) => item.id === params.id);
-        setProductItem(productItem);
-      } catch (error) {
-        console.error(error);
-      }
-    };
+    if (id) {
+      const fetchProduct = async () => {
+        try {
+          const response = await fetch(
+            `https://fakestoreapi.com/products/${id}`
+          );
+          const data: Product = await response.json();
+          setProductItem(data);
+        } catch (error) {
+          console.error("Error fetching product:", error);
+        }
+      };
 
-    fetchData();
-  }, [params.id]);
-
+      fetchProduct();
+    }
+  }, [id]);
   const handlerAddtoCart = (proItem: Product) => {
     dispatch(addToCart(proItem));
   };
@@ -48,7 +50,7 @@ const page: React.FC<productType> = ({ params }) => {
             height={500}
             className="w-[55%]  h-[450px]   "
           />
-          {/* <singleProductSlider /> */}
+          <SingleProductSlider />
           <div className="card-body w-[40%]  flex flex-col gap-5 p-5">
             <h2 className="card-title text-3xl font-bold">
               {productItem.title}

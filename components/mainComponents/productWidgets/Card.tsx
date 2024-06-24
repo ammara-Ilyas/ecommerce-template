@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import Link from "next/link";
 import { FaHeart, FaRetweet, FaShoppingCart } from "react-icons/fa";
 import IconLinks from "./Icons";
 /////////import redux
@@ -19,7 +20,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   };
   return (
     <div className="bg-white rounded-lg overflow-hidden shadow-lg transition-shadow duration-300 hover:shadow-xl h-64 ">
-      <div
+      <Link
+        href={`/product/${product.id}`}
         className="group duration-700 relative bg-cover object-fill overflow-hidden flex flex-col items-end justify-end bg-center h-64"
         style={{ backgroundImage: `url(${product.image})` }}
       >
@@ -37,7 +39,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             <IconLinks icon={<FaShoppingCart />} />
           </li>
         </ul>
-      </div>
+      </Link>
     </div>
   );
 };
