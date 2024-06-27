@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { FaHeart, FaRetweet, FaShoppingCart } from "react-icons/fa";
 import IconLinks from "./Icons";
 /////////import redux
@@ -19,26 +20,21 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     dispatch(addToCart(product));
   };
   return (
-    <div className="bg-white rounded-lg overflow-hidden shadow-lg transition-shadow duration-300 hover:shadow-xl h-64 ">
-      <Link
-        href={`/product/${product.id}`}
-        className="group duration-700 relative bg-cover object-fill overflow-hidden flex flex-col items-end justify-end bg-center h-64"
-        style={{ backgroundImage: `url(${product.image})` }}
-      >
-        <ul className="group-hover:bottom-0 absolute left-0 -bottom-[25%] duration-700  items-center w-full h-1/4 flex  justify-center  gap-5 text-xl">
-          <li
-            className=" h-full flex items-center justify-center  "
-            onClick={() => handleCartAddItem(product)}
-          >
-            <IconLinks icon={<FaHeart />} />
-          </li>
-          <li className=" h-full flex items-center justify-center  ">
-            <IconLinks icon={<FaRetweet />} />
-          </li>
-          <li className=" h-full flex items-center justify-center  ">
-            <IconLinks icon={<FaShoppingCart />} />
-          </li>
-        </ul>
+    <div className="bg-gray-200 relative py-2 px-4 mt-6">
+      <Link href="" className="text-gray-800">
+        <div className="flex justify-center items-center h-64 p-4">
+          <Image
+            src={product.image}
+            alt=""
+            width={300}
+            height={300}
+            className="rounded-md"
+          />
+        </div>
+
+        <div className="absolute top-0 right-0 bg-red-600 text-white px-2 py-1 text-sm">
+          New
+        </div>
       </Link>
     </div>
   );
