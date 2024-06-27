@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import { useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { FaHeart, FaRetweet, FaShoppingCart } from "react-icons/fa";
@@ -16,9 +17,12 @@ interface ProductCardProps {
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const dispatch = useDispatch();
-  const handleCartAddItem = (product: Product) => {
-    dispatch(addToCart(product));
-  };
+  const handleCartAddItem = useCallback(
+    (product: Product) => {
+      dispatch(addToCart(product));
+    },
+    [dispatch]
+  );
   return (
     <div className="bg-white rounded-lg group duration-700 relative bg-cover object-fill  overflow-hidden shadow-lg transition-shadow hover:shadow-xl h-64 ">
       <ul className="group-hover:bottom-0 absolute left-0 -bottom-[25%] duration-700  items-center w-full h-1/4 flex  justify-center  gap-5 text-xl">
