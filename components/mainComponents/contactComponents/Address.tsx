@@ -1,6 +1,7 @@
 import React from "react";
 import MessageForm from "./MessageForm";
 import Icon from "@/components/widgets/Icon";
+import Link from "next/link";
 const Addres = () => {
   return (
     <div className="relative isolate bg-white w-[95%] mx-auto ">
@@ -64,12 +65,9 @@ const Addres = () => {
                   </svg>
                 </dt>
                 <dd>
-                  <a
-                    className="hover:text-gray-900"
-                    href="mailto:contact@yourcompany.com"
-                  >
-                    contact@yourcompany.com
-                  </a>
+                  <Link className="hover:text-gray-900" href="/contact">
+                    contact@yourcompany&apos;com
+                  </Link>
                 </dd>
               </div>
               <div className="flex gap-x-4">
@@ -91,7 +89,7 @@ const Addres = () => {
                     ></path>
                   </svg>
                 </dt>
-                <dd>123 Main Street, Cityville&apos;, Country</dd>{" "}
+                <dd>123 Main Street Country</dd>{" "}
               </div>
               <div className="mt-8">
                 <dd>
