@@ -10,7 +10,7 @@ interface ProductCardProps {
 const ProductCardDetail: React.FC<ProductCardProps> = ({ product }) => {
   return (
     <div className="py-5">
-      <h5 className="text-lg font-bold text-gray-900 mt-1 h-[150px] ">
+      <h5 className="text-2xl font-bold text-gray-900 mt-1 h-[150px] ">
         <Link href={`/product/${product.id}`} className="capitalize text-xl ">
           {product.title}
         </Link>
