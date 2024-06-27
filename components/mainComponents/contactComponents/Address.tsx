@@ -66,7 +66,7 @@ const Addres = () => {
                 </dt>
                 <dd>
                   <Link className="hover:text-gray-900" href="/contact">
-                    contact@yourcompany&apos;com
+                    contact@yourcompany&apos;.com
                   </Link>
                 </dd>
               </div>
