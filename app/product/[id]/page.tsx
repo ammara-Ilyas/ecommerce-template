@@ -1,7 +1,8 @@
 "use client";
 import { addToCart } from "@/redux/slice/cartSlice";
 import { useDispatch } from "react-redux";
-////////toastify
+
+//toastify
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -9,9 +10,9 @@ import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 
-//////////// import type
+// import type
 import { Product } from "@/components/mainComponents/productWidgets/Types";
-// import SingleProductSlider from "@/components/slider/SingleProdcutSlider";
+
 const page: React.FC = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
@@ -35,6 +36,7 @@ const page: React.FC = () => {
       fetchProduct();
     }
   }, [id]);
+
   const handlerAddtoCart = (proItem: Product) => {
     dispatch(addToCart(proItem));
   };
@@ -50,7 +52,7 @@ const page: React.FC = () => {
             height={500}
             className="w-[55%]  h-[450px]   "
           />
-          {/* <SingleProductSlider /> */}
+
           <div className="card-body w-[40%]  flex flex-col gap-5 p-5">
             <h2 className="card-title text-3xl font-bold">
               {productItem.title}
