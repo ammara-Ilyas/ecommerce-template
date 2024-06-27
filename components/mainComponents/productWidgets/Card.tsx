@@ -20,7 +20,21 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     dispatch(addToCart(product));
   };
   return (
-    <div className="bg-gray-200 relative py-2 px-4 mt-6">
+    <div className="bg-white rounded-lg group duration-700 relative bg-cover object-fill  overflow-hidden shadow-lg transition-shadow hover:shadow-xl h-64 ">
+      <ul className="group-hover:bottom-0 absolute left-0 -bottom-[25%] duration-700  items-center w-full h-1/4 flex  justify-center  gap-5 text-xl">
+        <li
+          className=" h-full flex items-center justify-center  "
+          onClick={() => handleCartAddItem(product)}
+        >
+          <IconLinks icon={<FaHeart />} />
+        </li>
+        <li className=" h-full flex items-center justify-center  ">
+          <IconLinks icon={<FaRetweet />} />
+        </li>
+        <li className=" h-full flex items-center justify-center  ">
+          <IconLinks icon={<FaShoppingCart />} />
+        </li>
+      </ul>
       <Link href="" className="text-gray-800">
         <div className="flex justify-center items-center h-64 p-4">
           <Image

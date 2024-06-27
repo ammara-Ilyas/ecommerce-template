@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import ProductCard from "../mainComponents/productWidgets/Card";
+import SaleCard from "../mainComponents/productWidgets/SaleCard";
 import SaleCardDetail from "../mainComponents/productWidgets/SaleCardDetail";
 import { Swiper, SwiperSlide } from "swiper/react";
 //////////import reducer cart
@@ -41,7 +41,7 @@ const SaleSlider = () => {
               <div className="absolute z-30 top-4 left-5 bg-red-500 text-white px-2 py-3 rounded-full text-sm ">
                 20%
               </div>
-              <ProductCard product={item} />
+              <SaleCard product={item} />
               <SaleCardDetail product={item} />
             </div>{" "}
           </SwiperSlide>
