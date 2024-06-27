@@ -13,8 +13,8 @@ const Addres = () => {
           Contact Us
         </h2>
         <p className="mt-6 text-lg w-[80%] text-gray-600">
-          Feel free to reach out to us for any inquiries or assistance. We're
-          here to help!
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Autem,
+          voluptates.
         </p>
         <div className="flex gap-9  text-gray-600">
           <span>
@@ -26,7 +26,7 @@ const Addres = () => {
           <span>
             <FaAddressCard className="text-2xl" />
           </span>
-          <span className="text-2xl">123 Main Street Country</span>
+          <span className="text-2xl">123 Main Street </span>
         </div>
       </div>
       <div>
