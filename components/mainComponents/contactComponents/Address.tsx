@@ -64,11 +64,6 @@ const Addres = () => {
                     ></path>
                   </svg>
                 </dt>
-                <dd>
-                  <Link className="hover:text-gray-900" href="/contact">
-                    contact@yourcompany&apos;.com
-                  </Link>
-                </dd>
               </div>
               <div className="flex gap-x-4">
                 <dt className="flex-none">
