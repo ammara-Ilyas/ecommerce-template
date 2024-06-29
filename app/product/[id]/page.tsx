@@ -9,16 +9,16 @@ import "react-toastify/dist/ReactToastify.css";
 
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
-import { useParams } from "next/navigation";
+// import { useParams } from "next/navigation";
 
 // import type
 import { Product } from "@/components/mainComponents/productWidgets/Types";
 
 const page = () => {
   // const dispatch = useDispatch();
-  const param = useParams();
-  console.log(param, "pr");
-  const { id } = param;
+  // const param = useParams();
+  // console.log(param, "pr");
+  // const { id } = param;
 
   const [productItem, setProductItem] = useState<Product | null>(null);
 
