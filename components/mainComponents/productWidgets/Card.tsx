@@ -39,7 +39,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           <IconLinks icon={<FaShoppingCart />} />
         </li>
       </ul>
-      <Link href="" className="text-gray-800">
+      <Link href={`/product/${product.id}`} className="text-gray-800">
         <div className="flex justify-center items-center h-64 p-4">
           <Image
             src={product.image}

@@ -1,6 +1,7 @@
 "use client";
 import { addToCart } from "@/redux/slice/cartSlice";
 import { useDispatch } from "react-redux";
+import use from "next/app";
 
 //toastify
 import { ToastContainer } from "react-toastify";
@@ -13,33 +14,35 @@ import { useParams } from "next/navigation";
 // import type
 import { Product } from "@/components/mainComponents/productWidgets/Types";
 
-const page: React.FC = () => {
-  const dispatch = useDispatch();
-  const { id } = useParams();
+const page = () => {
+  // const dispatch = useDispatch();
+  const param = useParams();
+  console.log(param, "pr");
+  const { id } = param;
 
   const [productItem, setProductItem] = useState<Product | null>(null);
 
-  useEffect(() => {
-    if (id) {
-      const fetchProduct = async () => {
-        try {
-          const response = await fetch(
-            `https://fakestoreapi.com/products/${id}`
-          );
-          const data: Product = await response.json();
-          setProductItem(data);
-        } catch (error) {
-          console.error("Error fetching product:", error);
-        }
-      };
+  // useEffect(() => {
+  //   if (id) {
+  //     const fetchProduct = async () => {
+  //       try {
+  //         const response = await fetch(
+  //           `https://fakestoreapi.com/products/${id}`
+  //         );
+  //         const data: Product = await response.json();
+  //         setProductItem(data);
+  //       } catch (error) {
+  //         console.error("Error fetching product:", error);
+  //       }
+  //     };
 
-      fetchProduct();
-    }
-  }, [id]);
+  //     fetchProduct();
+  //   }
+  // }, [id]);
 
-  const handlerAddtoCart = (proItem: Product) => {
-    dispatch(addToCart(proItem));
-  };
+  // const handlerAddtoCart = (proItem: Product) => {
+  //   dispatch(addToCart(proItem));
+  // };
 
   return (
     <div>
@@ -72,7 +75,7 @@ const page: React.FC = () => {
               </button>
             </div>
             <button
-              onClick={() => handlerAddtoCart(productItem)}
+              // onClick={() => handlerAddtoCart(productItem)}
               className="bg-red-700 p-3 mx-auto w-[40%] hover:bg-red-500 active:bg-red-950 active:text-white"
             >
               Add to cart
