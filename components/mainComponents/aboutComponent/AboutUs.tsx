@@ -8,8 +8,8 @@ const AboutUs = () => {
   return (
     <div className="w-[90%] mx-auto py-20 bg-white">
       <div className="container  px-4 mx-auto">
-        <div className=" flex  justify-center border-2">
-          <div className="left-image w-[50%]  overflow-hidden rounded-lg border-2">
+        <div className=" flex  justify-center ">
+          <div className="left-image w-[50%]  overflow-hidden rounded-lg ">
             <Image
               src={leftImg}
               alt=""
@@ -18,7 +18,7 @@ const AboutUs = () => {
               height={450}
             />
           </div>
-          <div className="  border-2 w-[50%]  text-[15px]  flex flex-col gap-4">
+          <div className="   w-[50%]  text-[15px]  flex flex-col gap-4">
             <h4 className="text-4xl font-bold mb-4">About Us & Our Skills</h4>
             <span className="text-gray-600 mb-4">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
