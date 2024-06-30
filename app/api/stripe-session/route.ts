@@ -5,16 +5,9 @@ const key = process.env.STRIPE_SECRET_KEY || "";
 const stripe = new Stripe(key, { apiVersion: "2024-06-20" });
 
 export async function POST(request: NextRequest) {
+  const body = await request.json();
+  console.log(body, "body");
   try {
-    const authHeader = request.headers.get("Authorization");
-    if (
-      !authHeader ||
-      authHeader !== `Bearer ${process.env.STRIPE_SECRET_KEY}`
-    ) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
-    const body = await request.json();
-    console.log(body, "body");
     if (body.length > 0) {
       const session = await stripe.checkout.sessions.create({
         submit_type: "pay",
@@ -46,7 +39,7 @@ export async function POST(request: NextRequest) {
             },
           };
         }),
-        success_url: `${request.headers.get("origin")}/?success=true`,
+        success_url: `${request.headers.get("origin")}/success`,
         cancel_url: `${request.headers.get("origin")}/?canceled=true`,
       });
       //   res.redirect(303, session.url);
@@ -54,6 +47,7 @@ export async function POST(request: NextRequest) {
     } else {
       return NextResponse.json({ message: "No data found" });
     }
+    // Create Checkout Sessions from body params.
   } catch (err: any) {
     console.log("err", err);
 

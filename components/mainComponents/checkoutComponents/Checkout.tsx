@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import getStripePromise from "@/app/lib/stripe";
+import getSripePromise from "@/app/lib/stripe";
 const Checkout = () => {
   const products = [
     {
@@ -23,34 +23,20 @@ const Checkout = () => {
     },
   ];
   const handleStripe = async () => {
-    try {
-      const stripe = await getStripePromise();
-      console.log(stripe);
-
-      const response = await fetch("/api/stripe-session/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY}`, // Ensure your API key is set as an environment variable
-        },
-        cache: "no-cache",
-        body: JSON.stringify(products),
-      });
-
-      if (!response.ok) {
-        const errorData = await response.text();
-        console.error("Server error:", errorData);
-        throw new Error("Failed to create checkout session");
-      }
-
-      const data = await response.json();
-      console.log("data", data);
-
-      if (data.session && data.session.url) {
-        window.location.href = data.session.url;
-      }
-    } catch (error) {
-      console.error("Error creating checkout session:", error);
+    const stripe = await getSripePromise();
+    const response = await fetch("api/stripe-session/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${process.env.STRIPE_SECRET_KEY}`,
+      },
+      cache: "no-cache",
+      body: JSON.stringify(products),
+    });
+    const data = await response.json();
+    console.log("data", data);
+    if (data.session) {
+      stripe?.redirectToCheckout({ sessionId: data.session.id });
     }
   };
   return (
